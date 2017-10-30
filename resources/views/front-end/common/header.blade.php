@@ -205,7 +205,7 @@
                 </ul>
             </li>
             <!-- /.Megamenu -->
-            <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-themify-favicon-alt"></i></a></li>
+            <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-themify-favicon-alt"></i> Chat</a></li>
             <!-- /.dropdown -->
         </ul>
     </div>
