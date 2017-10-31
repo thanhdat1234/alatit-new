@@ -14,6 +14,8 @@
 //Route::get('/', 'WelcomeController@index');
 Route::get('/', ['as'=>'page.home.index','uses'=>'Home\HomeController@index']);
 Route::post('/', ['as'=>'page.home.index','uses'=>'Home\HomeController@index']);
+Route::post('/test-ne', ['as'=>'user.post','uses'=>'Home\HomeController@testOk']);
+Route::post('/test-nezzzzz', ['as'=>'user.post.test','uses'=>'Home\HomeController@testnOk']);
 
 Route::get('home', 'HomeController@index');
 /*home*/

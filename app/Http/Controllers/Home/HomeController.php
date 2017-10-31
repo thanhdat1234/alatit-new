@@ -3,7 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 
 class HomeController extends Controller {
 
@@ -17,7 +20,20 @@ class HomeController extends Controller {
 	    return view('front-end.home.index');
 		//
 	}
-
+	public function testOk(){
+		if(Request::ajax()){
+			pre($_POST);
+			pre($_FILES);
+			die;
+		}
+	}
+	public function testnOk(Request $request){
+		pre($_POST);
+		pre($_FILES);
+		/*if(Request::ajax()){
+			die;
+		}*/
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *

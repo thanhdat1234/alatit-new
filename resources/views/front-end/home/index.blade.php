@@ -65,14 +65,95 @@
                     <a class="popup-with-form fcbtn btn btn-outline btn-success btn-1e text-center" style="width: 100%;text-transform: uppercase" href="#test-form"><i class="fa fa-star fa-spin" aria-hidden="true"></i> Đăng tin</a>
                     <!-- form itself -->
                     <!-- /.row -->
-                    <div id="test-form" class="mfp-hide white-popup-block">
-                        <form action="#" class="dropzone" id="file_dropzone">
+                    <div id="test-form" class="mfp-hide white-popup-block lys-popup">
+                        <form action="javascript:void(0)" class="horizontal" name="data-post">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select class="form-control">
+                                                        <option value="Category 1">Category 1</option>
+                                                        <option value="Category 2">Category 2</option>
+                                                        <option value="Category 3">Category 5</option>
+                                                        <option value="Category 4">Category 4</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <select class="form-control">
+                                                        <option value="Category 1">Category 1</option>
+                                                        <option value="Category 2">Category 2</option>
+                                                        <option value="Category 3">Category 5</option>
+                                                        <option value="Category 4">Category 4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select class="form-control">
+                                                        <option value="Category 1">Category 1</option>
+                                                        <option value="Category 2">Category 2</option>
+                                                        <option value="Category 3">Category 5</option>
+                                                        <option value="Category 4">Category 4</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <select class="form-control">
+                                                        <option value="Category 1">Category 1</option>
+                                                        <option value="Category 2">Category 2</option>
+                                                        <option value="Category 3">Category 5</option>
+                                                        <option value="Category 4">Category 4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="textarea" placeholder="Bạn đăng gì ?"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="javascript:void(0)" data-ac="{{ route('user.post') }}" method="POST" data-method="POST" class="dropzone" id="file_dropzone" name="images-post" enctype="multipart/form-data">
                             <input type="text" hidden name="_token" value="{{ csrf_token() }}">
                             <div class="fallback">
-                                <input name="file" type="file" multiple data-dz-remove/>
+                                <input name="file[]" type="file" id="test_filez" multiple data-dz-remove/>
                             </div>
-                            <div class="form-group">
-                                <textarea class="form-control" id="textarea" placeholder="Bạn đăng gì ?"></textarea>
+                            <div class="clearfix"></div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                <br>
+                                                <button type="submit" class="btn btn-success pull-right"> <i class="fa fa-check"></i> Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="javscript:void(0)" class="horizontal" name="submit-post" enctype="multipart/form-data">
+                            <input name="az[]" type="file" id="test_file" multiple data-dz-remove/>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                <br>
+                                                <button type="submit" class="btn btn-success pull-right"> <i class="fa fa-check"></i> Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -307,6 +388,21 @@
     <!-- /.row -->
 @endsection
 @section('script')
+    <style>
+        .lys-popup .mfp-close{
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            z-index: 50 !important;
+            color: #ac2925 !important;
+        }
+        .white-popup-block{
+            /*margin-top: 300px;*/
+        }
+        .emojionearea-search{
+            display: none;
+        }
+    </style>
     <!--Counter js -->
     <script src="{!! url('public/home/') !!}/plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
     <script src="{!! url('public/home/') !!}/plugins/bower_components/counterup/jquery.counterup.min.js"></script>

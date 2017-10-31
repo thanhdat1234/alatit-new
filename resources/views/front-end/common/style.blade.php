@@ -6,6 +6,7 @@
 @yield('style')
 <!-- animation CSS -->
 <link href="{!! url('public/home/') !!}/assets/css/animate.css" rel="stylesheet">
+<link href="{!! url('public/home/') !!}/plugins/bower_components/emojionearea/dist/emojionearea.min.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="{!! url('public/home/') !!}/assets/css/style.css" rel="stylesheet">
 <!-- color CSS -->

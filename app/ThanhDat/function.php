@@ -21,7 +21,7 @@ if(!function_exists("pre"))
             echo $var;
         }
         echo "</pre>";
-        die();
+        //die();
     }
 }
 /*
