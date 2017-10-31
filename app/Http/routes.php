@@ -13,6 +13,7 @@
 
 //Route::get('/', 'WelcomeController@index');
 Route::get('/', ['as'=>'page.home.index','uses'=>'Home\HomeController@index']);
+Route::post('/', ['as'=>'page.home.index','uses'=>'Home\HomeController@index']);
 
 Route::get('home', 'HomeController@index');
 /*home*/

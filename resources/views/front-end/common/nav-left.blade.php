@@ -19,21 +19,21 @@
                 </ul>
             </li>
             <li>
-                <a href="inbox.html" class="waves-effect"><i data-icon=")" class="fa fa-building fa-fw"></i> <span class="hide-menu">Bất động sản - Dự án mới <span class="fa arrow"></span></span></a>
+                <a href="inbox.html" class="waves-effect"><i data-icon=")" class="fa fa-building fa-fw"></i> <span class="hide-menu">Bất động sản <span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li> <a href="">Inverse RTL</a></li>
                 </ul>
             </li>
 
             <li>
-                <a href="inbox.html" class="waves-effect"><i class="fa fa-file-word-o fa-fw"></i> <span class="hide-menu">Đồ dùng văn phòng <span class="fa arrow"></span></span></a>
+                <a href="inbox.html" class="waves-effect"><i class="fa fa-file-word-o fa-fw"></i> <span class="hide-menu">Văn phòng phẩm<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li> <a href="">Inverse RTL</a></li>
                 </ul>
             </li>
 
             <li>
-                <a href="inbox.html" class="waves-effect"><i class="fa fa-trophy fa-fw"></i> <span class="hide-menu">Dụng cụ thể thao <span class="fa arrow"></span></span></a>
+                <a href="inbox.html" class="waves-effect"><i class="fa fa-trophy fa-fw"></i> <span class="hide-menu">Thể thao <span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li> <a href="">Inverse RTL</a></li>
                 </ul>
@@ -74,13 +74,18 @@
             </li>
 
             <li>
-                <a href="inbox.html" class="waves-effect p-hot"><i class="icon-fire fa-fw text-danger"></i></a>
+                <a href="inbox.html" class="waves-effect"><i class="ti-more fa-fw"></i> <span class="hide-menu">Khác <span class="fa arrow"></span></span></a>
+                <ul class="nav nav-second-level">
+                    <li> <a href="">Inverse RTL</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="{{url('san-pham-hot.html')}}" class="waves-effect p-hot"><i class="icon-fire fa-fw text-danger"></i> Hot</a>
             </li>
         </ul>
     </div>
 </div>
 <style>
-    .p-hot{
-        font-size: 25px;
-    }
+
 </style>
