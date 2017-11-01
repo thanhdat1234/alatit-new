@@ -122,26 +122,13 @@
                                 </div>
                             </div>
                         </form>
-                        <form action="javascript:void(0)" data-ac="{{ route('user.post') }}" method="POST" data-method="POST" class="dropzone" id="file_dropzone" name="images-post" enctype="multipart/form-data">
+                        <form action="{{ route('user.post') }}" data-ac="{{ route('user.post') }}" method="POST" data-method="POST" class="dropzone" id="file_dropzone" name="images-post" enctype="multipart/form-data">
                             <input type="text" hidden name="_token" value="{{ csrf_token() }}">
                             <div class="fallback">
                                 <input name="file[]" type="file" id="test_filez" multiple data-dz-remove/>
                             </div>
-                            <div class="clearfix"></div>
-                            <div class="form-actions">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                                <br>
-                                                <button type="submit" class="btn btn-success pull-right"> <i class="fa fa-check"></i> Submit</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </form>
-                        <form action="javscript:void(0)" class="horizontal" name="submit-post" enctype="multipart/form-data">
+                        <form action="javascript:void(0)" class="horizontal" name="submit-post" enctype="multipart/form-data">
                             <input name="az[]" type="file" id="test_file" multiple data-dz-remove/>
                             <div class="form-actions">
                                 <div class="row">

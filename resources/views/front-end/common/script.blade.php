@@ -54,13 +54,13 @@
             });
         });
 
-        $('form[name="file-post"]').unbind().bind('submit',function(){
+        /*$('form[name="file-post"]').unbind().bind('submit',function(){
             var $data = {};
-            /*var $data ={
+            /!*var $data ={
                 'submit' : $('form[name="submit-post"]').serialize(),
                 'file' : $('form[name="file-post"]').serialize(),
                 'data' : $('form[name="data-post"]').serialize()
-            };*/
+            };*!/
 
             var fd = new FormData();
             fd.append("abc", "abc");
@@ -79,6 +79,6 @@
                     console.log(status);
                 }
             });
-        });
+        });*/
     });
 </script>
