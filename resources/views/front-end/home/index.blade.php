@@ -150,6 +150,7 @@
                 <div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
                     <h4 href="#" class="btn btn-danger btn-block waves-effect waves-light">Địa điểm tìm kiếm </h4>
                     <div id="treeview-searchable" class="treeview">
+
                     </div>
                     <hr class="m-t-5">
                 </div>
@@ -198,7 +199,6 @@
                                             <div class="item"><img class="owl-lazy" data-src="{!! url('public/home/') !!}/plugins/images/big/img6.jpg" alt="Owl Image"></div>
                                             <div class="item-video">
                                                 <iframe src="https://www.youtube.com/embed/6TUOSBPCygs?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-
                                             </div>
                                         </div>
                                     </div>
@@ -399,6 +399,59 @@
     <script src="{!! url('public/home/') !!}/assets/js/custom.min.js"></script>
     <!-- Treeview Plugin JavaScript -->
     <script src="{!! url('public/home/') !!}/plugins/bower_components/bootstrap-treeview-master/dist/bootstrap-treeview.min.js"></script>
+    <script>
+        var catedata = [
+            {
+                text: 'HCM',
+                href: '#parent1',
+                tags: ['4'],
+                nodes: [
+                    {
+                        text: 'Child 1',
+                        href: '#child1',
+                        tags: ['2'],
+                        nodes: [
+                            {
+                                text: 'Grandchild 1',
+                                href: '#grandchild1',
+                                tags: ['0']
+                            },
+                            {
+                                text: 'Grandchild 2',
+                                href: '#grandchild2',
+                                tags: ['0']
+                            }
+                        ]
+                    },
+                    {
+                        text: 'Child 2',
+                        href: '#child2',
+                        tags: ['2']
+                    }
+                ]
+            },
+            {
+                text: 'Parent 2',
+                href: '#parent2',
+                tags: ['0']
+            },
+            {
+                text: 'Parent 3',
+                href: '#parent3',
+                tags: ['0']
+            },
+            {
+                text: 'Parent 4',
+                href: '#parent4',
+                tags: ['0']
+            },
+            {
+                text: 'Parent 5',
+                href: '#parent5'  ,
+                tags: ['0']
+            }
+        ];
+    </script>
     <script src="{!! url('public/home/') !!}/plugins/bower_components/bootstrap-treeview-master/dist/bootstrap-treeview-init.1a3.delaye"></script>
     <!-- Sparkline chart JavaScript -->
     <script src="{!! url('public/home/') !!}/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>

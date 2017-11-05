@@ -109,6 +109,7 @@
                 <!-- /.dropdown-tasks -->
             </li>
             <!-- /.dropdown -->
+            @if(!empty(Auth::user()->id))
             <li class="dropdown">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="{!! url('public/home/') !!}/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b> </a>
                 <ul class="dropdown-menu dropdown-user animated flipInY">
@@ -122,6 +123,15 @@
                 </ul>
                 <!-- /.dropdown-user -->
             </li>
+            @else
+                <li>
+                    <a class="profile-pic" href="{{ route('user.get.register') }}"><i class="fa fa-lock"></i><font class="hidden-xs"> Đăng ký </font></a>
+                    <!-- /.dropdown-user -->
+                </li>
+                <li>
+                    <a class="profile-pic" href="{{ route('user.get.login') }}"><i class="fa fa-unlock-alt"></i><font class="hidden-xs"> Đăng Nhập </font></a>
+                </li>
+            @endif
             <!-- .Megamenu -->
             <li class="mega-dropdown">
                 <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><span class="hidden-xs">Mega</span> <i class="icon-options-vertical"></i></a>

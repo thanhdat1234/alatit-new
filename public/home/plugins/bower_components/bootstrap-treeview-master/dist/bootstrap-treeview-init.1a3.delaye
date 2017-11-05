@@ -246,12 +246,12 @@ $(function() {
 
 
         var $searchableTree = $('#treeview-searchable').treeview({
-          selectedBackColor: "#03a9f3",
-          onhoverColor: "rgba(0, 0, 0, 0.05)",
+            selectedBackColor: "#03a9f3",
+            onhoverColor: "rgba(0, 0, 0, 0.05)",
             expandIcon: 'ti-plus',
             collapseIcon: 'ti-minus',
             nodeIcon: 'fa fa-folder',
-          data: defaultData,
+            data: catedata,
         });
 
         var search = function(e) {
