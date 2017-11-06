@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
-class Topic extends Model
+class Comment extends Model
 {
-    protected $table='topic';
+    protected $table='comment';
     public $timestamp=true;
     static public function createFileComment($path,$file,$data){
         if(!file_exists(storage_path("app/".$path)."/".$file)){

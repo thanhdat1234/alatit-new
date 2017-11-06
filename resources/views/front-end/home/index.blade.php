@@ -395,8 +395,6 @@
     <script src="{!! url('public/home/') !!}/plugins/bower_components/counterup/jquery.counterup.min.js"></script>
     <!--Morris JavaScript -->
     <script src="{!! url('public/home/') !!}/plugins/bower_components/raphael/raphael-min.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="{!! url('public/home/') !!}/assets/js/custom.min.js"></script>
     <!-- Treeview Plugin JavaScript -->
     <script src="{!! url('public/home/') !!}/plugins/bower_components/bootstrap-treeview-master/dist/bootstrap-treeview.min.js"></script>
     <script>

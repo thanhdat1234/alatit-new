@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Model\Location;
 
 //use Illuminate\Http\Request;
 use Request;
@@ -17,7 +18,9 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-	    return view('front-end.home.index');
+		$location = Location::getList();
+		pre($location);
+	    return view('front-end.home.index',compact('location'));
 		//
 	}
 	public function testOk(){

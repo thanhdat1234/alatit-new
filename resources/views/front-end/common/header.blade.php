@@ -2,7 +2,8 @@
 <nav class="navbar navbar-default navbar-static-top m-b-0">
     <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
         <div class="top-left-part">
-            <a class="logo" href="{{url('')}}"><b><img src="{!! url('public/home/') !!}/plugins/images/eliteadmin-logo.png" alt="home" /></b><span class="hidden-xs"><img src="{!! url('public/home/') !!}/plugins/images/eliteadmin-text.png" alt="home" /></span>
+            <a class="logo" href="{{url('')}}">
+                <b><img src="{!! url('public/logo/') !!}/logo1.png" alt="Alatit.com" /></b>
             </a>
         </div>
         <ul class="nav navbar-top-links navbar-left hidden-xs">
@@ -15,7 +16,9 @@
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right pull-right">
-            <li class="dropdown"> <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><i class="icon-envelope"></i>
+            @if(!empty(Auth::user()->id))
+            <li class="dropdown">
+                <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><i class="icon-envelope"></i>
                     <div class="notify">
                         <span class="heartbit"></span><span class="point"></span></div></a>
                 <ul class="dropdown-menu mailbox animated flipInY">
@@ -69,58 +72,22 @@
                         </a>
                     </li>
                     <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p> <strong>Task 2</strong> <span class="pull-right text-muted">20% Complete</span> </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"> <span class="sr-only">20% Complete</span> </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p> <strong>Task 3</strong> <span class="pull-right text-muted">60% Complete</span> </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"> <span class="sr-only">60% Complete (warning)</span> </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p> <strong>Task 4</strong> <span class="pull-right text-muted">80% Complete</span> </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"> <span class="sr-only">80% Complete (danger)</span> </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#"> <strong>See All Tasks</strong> <i class="fa fa-angle-right"></i> </a>
-                    </li>
                 </ul>
                 <!-- /.dropdown-tasks -->
             </li>
             <!-- /.dropdown -->
-            @if(!empty(Auth::user()->id))
             <li class="dropdown">
-                <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="{!! url('public/home/') !!}/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b> </a>
+                <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
+                    <img src="{!! url('public/home/') !!}/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle">
+                    <b class="hidden-xs">{!! Auth::user()->name !!}</b>
+                </a>
                 <ul class="dropdown-menu dropdown-user animated flipInY">
-                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                    <li><a href="{{route('user.get.profile')}}"><i class="ti-user"></i> Trang cá nhân</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                    <li><a href="javascript:void(0)" onclick="if(confirm('Bạn có muốn đăng xuất')){event.preventDefault();document.getElementById('logout-form').submit();}"><i class="fa fa-power-off"></i> Đăng xuất</a></li>
+                    <form id="logout-form" action="{{ route('user.post.logout') }}" method="POST" style="display: none;"><input type="text" hidden name="_token" value="{{csrf_token()}}"></form>
                 </ul>
+
                 <!-- /.dropdown-user -->
             </li>
             @else
@@ -134,7 +101,7 @@
             @endif
             <!-- .Megamenu -->
             <li class="mega-dropdown">
-                <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><span class="hidden-xs">Mega</span> <i class="icon-options-vertical"></i></a>
+                <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><span class="hidden-xs">Menu</span> <i class="icon-options-vertical"></i></a>
                 <ul class="dropdown-menu mega-dropdown-menu animated bounceInDown">
                     <li class="col-sm-3">
                         <ul>
@@ -193,30 +160,34 @@
                     <li class="col-sm-12 m-t-40 demo-box">
                         <div class="row">
                             <div class="col-sm-2">
-                                <div class="white-box text-center bg-purple"><a href="http://eliteadmin.themedesigner.in/demos/eliteadmin-inverse/index.html" target="_blank" class="text-white"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i><br/>Demo 1</a></div>
+                                <div class="white-box text-center bg-purple">
+                                    <a href="#/demos/eliteadmin-inverse/index.html" target="_blank" class="text-white"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i><br/>Demo 1</a>
+                                </div>
                             </div>
                             <div class="col-sm-2">
-                                <div class="white-box text-center bg-success"><a href="http://eliteadmin.themedesigner.in/demos/eliteadmin/index.html" target="_blank" class="text-white"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i><br/>Demo 2</a></div>
+                                <div class="white-box text-center bg-success"><a href="#/demos/eliteadmin/index.html" target="_blank" class="text-white"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i><br/>Demo 2</a></div>
                             </div>
                             <div class="col-sm-2">
-                                <div class="white-box text-center bg-info"><a href="http://eliteadmin.themedesigner.in/demos/eliteadmin-ecommerce/index.html" target="_blank" class="text-white"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i><br/>Demo 3</a></div>
+                                <div class="white-box text-center bg-info"><a href="#/demos/eliteadmin-ecommerce/index.html" target="_blank" class="text-white"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i><br/>Demo 3</a></div>
                             </div>
                             <div class="col-sm-2">
                                 <div class="white-box text-center bg-inverse"><a href="index3.html" target="_blank" class="text-white"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i><br/>Demo 4</a></div>
                             </div>
                             <div class="col-sm-2">
-                                <div class="white-box text-center bg-warning"><a href="http://eliteadmin.themedesigner.in/demos/eliteadmin-iconbar/index4.html" target="_blank" class="text-white"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i><br/>Demo 5</a></div>
+                                <div class="white-box text-center bg-warning"><a href="#/demos/eliteadmin-iconbar/index4.html" target="_blank" class="text-white"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i><br/>Demo 5</a></div>
                             </div>
                             <div class="col-sm-2">
-                                <div class="white-box text-center bg-danger"><a href="https://themeforest.net/item/elite-admin-responsive-web-app-kit-/16750820" target="_blank" class="text-white"><i class="linea-icon linea-ecommerce fa-fw" data-icon="d"></i><br/>Buy Now</a></div>
+                                <div class="white-box text-center bg-danger"><a href=##/item/elite-admin-responsive-web-app-kit-/16750820" target="_blank" class="text-white"><i class="linea-icon linea-ecommerce fa-fw" data-icon="d"></i><br/>Buy Now</a></div>
                             </div>
                         </div>
                     </li>
                 </ul>
             </li>
+            @if(!empty(Auth::user()->id))
             <!-- /.Megamenu -->
-            <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-themify-favicon-alt"></i> Chat</a></li>
+            <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-themify-favicon-alt"></i> Theo dõi</a></li>
             <!-- /.dropdown -->
+            @endif
         </ul>
     </div>
     <!-- /.navbar-header -->

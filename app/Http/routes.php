@@ -20,16 +20,31 @@ Route::post('/test-nezzzzz', ['as'=>'user.post.test','uses'=>'Home\HomeControlle
 Route::get('home', 'HomeController@index');
 /*home*/
 Route::get('nhan-tin.html', ['as'=>'user.chat.list','uses'=>'Home\ChatController@getList']);
+
 /*user*/
 Route::get('dang-ky.html', ['as'=>'user.get.register','uses'=>'Home\UserController@getRegister']);
 Route::post('dang-ky.html', ['as'=>'user.post.register','uses'=>'Home\UserController@postRegisterUser']);
+
 Route::get('dang-nhap.html', ['as'=>'user.get.login','uses'=>'Home\UserController@getLoginUser']);
 Route::post('dang-nhap.html', ['as'=>'user.post.login','uses'=>'Home\UserController@postLoginUser']);
+
+Route::post('dang-xuat.html', ['as'=>'user.post.logout','uses'=>'Home\UserController@postLogoutUser']);
+
 Route::get('quen-mat-khau.html', ['as'=>'user.page.recoverpd','uses'=>'Home\UserController@recoverPW']);
+
 Route::get('trang-ca-nhan.html', ['as'=>'user.get.profile','uses'=>'Home\UserController@getProfile']);
 Route::post('trang-ca-nhan.html', ['as'=>'user.post.profile','uses'=>'Home\UserController@postProfile']);
+
+Route::get('nhan-tin-{id_user}.html', ['as'=>'user.get.message','uses'=>'Home\UserController@getMessage']);
+Route::post('nhan-tin-{id_user}.html', ['as'=>'user.post.message','uses'=>'Home\UserController@postMessage']);
+
+Route::get('nhan-tin-{id}.html', ['as'=>'user.get.message','uses'=>'Home\UserController@getMessage']);
+Route::post('comment-{id_post}.html', ['as'=>'user.post.comment','uses'=>'Home\UserController@postComment']);
+
+Route::post('dang-bai.html', ['as'=>'user.put.post','uses'=>'Home\UserController@putPost']);
 /*page*/
 Route::get('dieu-khoan-su-dung.html', ['as'=>'page.ruler','uses'=>'Home\PageController@getRuler']);
+
 /*end home*/
 Route::get('admin','Admin\IndexController@index');
 

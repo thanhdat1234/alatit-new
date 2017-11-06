@@ -4,23 +4,34 @@
     <section id="wrapper" class="login-register">
         <div class="login-box">
             <div class="white-box">
-                <form class="form-horizontal form-material" id="loginform" action="{{route('user.post.login')}}">
+                <form class="form-horizontal form-material" id="loginform" action="{{route('user.post.login')}}" method="post">
+                    <input type="text" hidden name="_token" value="{{ csrf_token() }}">
                     <a href="{{url('')}}" class="text-center db"><img src="{{url('public')}}/logo/logo.png" alt="Home"></a>
                     <hr>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Tên đăng nhập">
+                            <input class="form-control" type="text" required="" name="user_name" value="{{ old('user_name') }}" placeholder="Tên đăng nhập">
+                            @if ($errors->has('user_name'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('user_name') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required="" placeholder="Mật khẩu">
+                            <input class="form-control" type="password" name="user_pass" required="" value="{{ old('user_pass') }}" placeholder="Mật khẩu">
+                            @if ($errors->has('user_pass'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('user_pass') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
                             <div class="checkbox checkbox-primary pull-left p-t-0">
-                                <input id="checkbox-signup" type="checkbox">
+                                <input id="checkbox-signup" type="checkbox" required>
                                 <label for="checkbox-signup"> Ghi nhớ đăng nhập </label>
                             </div>
                             <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i> Bạn quên mật khẩu?</a> </div>
