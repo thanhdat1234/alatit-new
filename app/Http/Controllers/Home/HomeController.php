@@ -18,8 +18,9 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		$location = Location::getList();
-		pre($location);
+	    $lc = new Location();
+		$location = $lc->orderCategory();
+		//pre($location);
 	    return view('front-end.home.index',compact('location'));
 		//
 	}
