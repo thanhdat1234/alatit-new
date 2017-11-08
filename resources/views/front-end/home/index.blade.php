@@ -149,8 +149,17 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
                     <h4 href="#" class="btn btn-danger btn-block waves-effect waves-light">Địa điểm tìm kiếm </h4>
-                    <div id="treeview-searchable" class="treeview">
-
+                    <div class="">
+                        <ul class="list-group">
+                            {{--Item--}}
+                            @foreach($location as $item)
+                                <li class="list-group-item">
+                                    <i class="ti-plus text-success"></i>
+                                    <a href="javascript:void(0)"> {{$item['name']}}</a>
+                                </li>
+                            @endforeach
+                            {{--/item--}}
+                        </ul>
                     </div>
                     <hr class="m-t-5">
                 </div>
@@ -403,54 +412,33 @@
                 text: 'HCM',
                 href: '#parent1',
                 tags: ['4'],
+                enableLinks:true,
                 nodes: [
                     {
                         text: 'Child 1',
                         href: '#child1',
                         tags: ['2'],
-                        nodes: [
-                            {
-                                text: 'Grandchild 1',
-                                href: '#grandchild1',
-                                tags: ['0']
-                            },
-                            {
-                                text: 'Grandchild 2',
-                                href: '#grandchild2',
-                                tags: ['0']
-                            }
-                        ]
+                        enableLinks:true,
                     },
                     {
                         text: 'Child 2',
-                        href: '#child2',
-                        tags: ['2']
+                        href: 'https://google.com',
+                        tags: ['2'],
+                        enableLinks:true,
                     }
                 ]
             },
-            {
-                text: 'Parent 2',
-                href: '#parent2',
-                tags: ['0']
-            },
-            {
-                text: 'Parent 3',
-                href: '#parent3',
-                tags: ['0']
-            },
-            {
-                text: 'Parent 4',
-                href: '#parent4',
-                tags: ['0']
-            },
-            {
-                text: 'Parent 5',
-                href: '#parent5'  ,
-                tags: ['0']
-            }
         ];
+        var $searchableTree = $('#treeview-searchable').treeview({
+            selectedBackColor: "#03a9f3",
+            onhoverColor: "rgba(0, 0, 0, 0.05)",
+            expandIcon: 'ti-plus',
+            collapseIcon: 'ti-minus',
+            nodeIcon: 'fa fa-folder',
+            data: catedata,
+        });
     </script>
-    <script src="{!! url('public/home/') !!}/plugins/bower_components/bootstrap-treeview-master/dist/bootstrap-treeview-init.1a3.delaye"></script>
+    {{--<script src="{!! url('public/home/') !!}/plugins/bower_components/bootstrap-treeview-master/dist/bootstrap-treeview-init.1a3.delaye"></script>--}}
     <!-- Sparkline chart JavaScript -->
     <script src="{!! url('public/home/') !!}/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
     <script src="{!! url('public/home/') !!}/plugins/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>

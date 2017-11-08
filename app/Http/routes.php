@@ -42,6 +42,8 @@ Route::get('nhan-tin-{id}.html', ['as'=>'user.get.message','uses'=>'Home\UserCon
 Route::post('comment-{id_post}.html', ['as'=>'user.post.comment','uses'=>'Home\UserController@postComment']);
 
 Route::post('dang-bai.html', ['as'=>'user.put.post','uses'=>'Home\UserController@putPost']);
+/*post*/
+Route::get('{name}-{id}-{code}-{parent}.html', ['as'=>'post.location','uses'=>'Home\PostController@getPostLocation']);
 /*page*/
 Route::get('dieu-khoan-su-dung.html', ['as'=>'page.ruler','uses'=>'Home\PageController@getRuler']);
 
