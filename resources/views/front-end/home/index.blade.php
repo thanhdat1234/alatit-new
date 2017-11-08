@@ -1,7 +1,6 @@
 @extends('front-end.index')
 @section('style')
-    <!-- toast CSS -->
-    <link href="{!! url('public/home/') !!}/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
+
     <!-- Popup CSS -->
     <link href="{!! url('public/home/') !!}/plugins/bower_components/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
     <!-- morris CSS -->
@@ -60,6 +59,7 @@
     <!-- /.row -->
     <div class="row">
         <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+            @if(!empty(Auth::user()->id))
             <div class="white-box">
                 <div class="row">
                     <a class="popup-with-form fcbtn btn btn-outline btn-success btn-1e text-center" style="width: 100%;text-transform: uppercase" href="#test-form"><i class="fa fa-star fa-spin" aria-hidden="true"></i> Đăng tin</a>
@@ -67,25 +67,25 @@
                     <!-- /.row -->
                     <div id="test-form" class="mfp-hide white-popup-block lys-popup">
                         <form action="javascript:void(0)" class="horizontal" name="data-post">
+                            <input type="text" hidden name="xyz" value="{{csrf_token()}}">
                             <div class="form-body">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <select class="form-control">
-                                                        <option value="Category 1">Category 1</option>
-                                                        <option value="Category 2">Category 2</option>
-                                                        <option value="Category 3">Category 5</option>
-                                                        <option value="Category 4">Category 4</option>
+                                                    <select class="form-control change_select" data-type="location" name="location_parent">
+                                                        <option value="0">--Tất cả tỉnh thành--</option>
+                                                        @if($location_total)
+                                                            @foreach($location_total as $item)
+                                                                <option value="{{$item['id']}}">{!! $item['name'] !!}</option>
+                                                            @endforeach
+                                                        @endif
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <select class="form-control">
-                                                        <option value="Category 1">Category 1</option>
-                                                        <option value="Category 2">Category 2</option>
-                                                        <option value="Category 3">Category 5</option>
-                                                        <option value="Category 4">Category 4</option>
+                                                    <select class="form-control" name="location_child" id="location_child">
+                                                        <option value="0">--Quận (Huyện)--</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -98,19 +98,18 @@
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <select class="form-control">
-                                                        <option value="Category 1">Category 1</option>
-                                                        <option value="Category 2">Category 2</option>
-                                                        <option value="Category 3">Category 5</option>
-                                                        <option value="Category 4">Category 4</option>
+                                                    <select class="form-control change_select" data-type="category" data-child="cate-child" name="cate_parent">
+                                                        <option value="0">--Tất cả thể loại--</option>
+                                                        @if($cate_total)
+                                                            @foreach($cate_total as $item)
+                                                                <option value="{{$item['id']}}">{!! $item['name'] !!}</option>
+                                                            @endforeach
+                                                        @endif
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <select class="form-control">
-                                                        <option value="Category 1">Category 1</option>
-                                                        <option value="Category 2">Category 2</option>
-                                                        <option value="Category 3">Category 5</option>
-                                                        <option value="Category 4">Category 4</option>
+                                                    <select class="form-control" name="cate-child" id="cate_child">
+                                                        <option value="01">--Danh mục con--</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -128,8 +127,7 @@
                                 <input name="file[]" type="file" id="test_filez" multiple data-dz-remove/>
                             </div>
                         </form>
-                        <form action="javascript:void(0)" class="horizontal" name="submit-post" enctype="multipart/form-data">
-                            <input name="az[]" type="file" id="test_file" multiple data-dz-remove/>
+                        <form action="javascript:void(0)" class="horizontal" name="submit-post">
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -146,6 +144,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             <div class="row">
                 <div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
                     <h4 href="#" class="btn btn-danger btn-block waves-effect waves-light">Địa điểm tìm kiếm </h4>
@@ -443,7 +442,7 @@
     <script src="{!! url('public/home/') !!}/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
     <script src="{!! url('public/home/') !!}/plugins/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
     <script src="{!! url('public/home/') !!}/plugins/bower_components/dropzone-master/dist/dropzone.js"></script>
-    <script src="{!! url('public/home/') !!}/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+
     <script src="{!! url('public/home/') !!}/plugins/bower_components/owl.carousel/owl.carousel.min.js"></script>
     <script src="{!! url('public/home/') !!}/plugins/bower_components/owl.carousel/owl.custom.js"></script>
     <!-- Magnific popup JavaScript -->

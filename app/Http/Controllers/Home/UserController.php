@@ -33,7 +33,7 @@ class UserController extends Controller {
 		$user->status  = 1;
 		$user->password  = bcrypt($request->user_pass);
 		$user->save();
-		return redirect(url(""))->with(['flash_level'=>'success','flash_messages'=>'Ch�c m?ng b?n t?o t�i kho?n th�nh c�ng !']);
+		return redirect(route('user.get.login'))->with(['flash_level'=>'success','flash_messages'=>'Đăng ký thành công! Mời bạn đăng nhập. !']);
 	}
 	public function getLoginUser(){
 		return view('front-end.user.login');
@@ -47,7 +47,7 @@ class UserController extends Controller {
 		if(Auth::attempt($login)){
 			return redirect(url(''));
 		}else{
-			return redirect(url(''))->with(['flash_messages'=>'T�n ??ng nh?p ho?c m?t kh?u kh�ng ?�ng !','flash_level'=>'login']);
+			return redirect(route('user.get.login'))->with(['flash_messages'=>'Tên đăng nhập hoặc mật khẩu không chính xác !','flash_level'=>'error']);
 		}
 	}
 	public function postLogoutUser(){

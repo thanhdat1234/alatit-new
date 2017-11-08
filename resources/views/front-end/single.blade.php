@@ -18,5 +18,18 @@
 <!-- /#wrapper -->
 <!-- jQuery -->
 @include('front-end.common.script')
+@if(Session::has('flash_messages'))
+    <script>
+        $.toast({
+            heading: 'Có lỗi xảy ra !',
+            text: '{!! Session::get('flash_messages') !!}.',
+            position: 'top-right',
+            loaderBg: '#ff6849',
+            icon: '{!! Session::get('flash_level') !!}',
+            hideAfter: 3500,
+            stack: 6
+        })
+    </script>
+@endif
 </body>
 </html>

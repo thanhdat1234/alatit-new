@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Model\Cate;
 use App\Model\Location;
 
 //use Illuminate\Http\Request;
@@ -18,10 +19,13 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-	    $lc = new Location();
-		$location = $lc->orderCategory();
+		$location 			= Location::orderCategory();
+		$cate_top 			= Cate::getList(['top'=>1]);
+		$cate_home 			= Cate::getList(['home'=>1]);
+		$cate_total 		= Cate::getListFollowKey(false);
+		$location_total 	= Location::getListFollowKey(false);
 		//pre($location);
-	    return view('front-end.home.index',compact('location'));
+	    return view('front-end.home.index',compact('location','cate_top','cate_home','cate_total','location_total'));
 		//
 	}
 	public function testOk(){

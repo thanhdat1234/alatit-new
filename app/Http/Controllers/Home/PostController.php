@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Model\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller {
@@ -13,6 +14,15 @@ class PostController extends Controller {
 	 * @return Response
 	 */
 	public function getPostLocation(){
+		$post = Post::getList(false);
+	    return view('front-end.post.listLocation');
+    }
+	public function getPostCategory(){
+		$post = Post::getList(false);
+	    return view('front-end.post.listLocation');
+    }
+	public function getPostHot(){
+		$post = Post::getList(false);
 	    return view('front-end.post.listLocation');
     }
 	public function index()

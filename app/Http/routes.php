@@ -19,7 +19,12 @@ Route::post('/test-nezzzzz', ['as'=>'user.post.test','uses'=>'Home\HomeControlle
 
 Route::get('home', 'HomeController@index');
 /*home*/
-Route::get('nhan-tin.html', ['as'=>'user.chat.list','uses'=>'Home\ChatController@getList']);
+Route::get('tin-nhan.html', ['as'=>'user.chat.list','uses'=>'Home\ChatController@getList']);
+Route::get('nhan-tin-{id_user}.html', ['as'=>'user.get.message','uses'=>'Home\UserController@getMessage']);
+Route::post('nhan-tin-{id_user}.html', ['as'=>'user.post.message','uses'=>'Home\UserController@postMessage']);
+
+Route::get('nhan-tin-{id}.html', ['as'=>'user.get.message','uses'=>'Home\UserController@getMessage']);
+Route::post('comment-{id_post}.html', ['as'=>'user.post.comment','uses'=>'Home\UserController@postComment']);
 
 /*user*/
 Route::get('dang-ky.html', ['as'=>'user.get.register','uses'=>'Home\UserController@getRegister']);
@@ -35,15 +40,18 @@ Route::get('quen-mat-khau.html', ['as'=>'user.page.recoverpd','uses'=>'Home\User
 Route::get('trang-ca-nhan.html', ['as'=>'user.get.profile','uses'=>'Home\UserController@getProfile']);
 Route::post('trang-ca-nhan.html', ['as'=>'user.post.profile','uses'=>'Home\UserController@postProfile']);
 
-Route::get('nhan-tin-{id_user}.html', ['as'=>'user.get.message','uses'=>'Home\UserController@getMessage']);
-Route::post('nhan-tin-{id_user}.html', ['as'=>'user.post.message','uses'=>'Home\UserController@postMessage']);
 
-Route::get('nhan-tin-{id}.html', ['as'=>'user.get.message','uses'=>'Home\UserController@getMessage']);
-Route::post('comment-{id_post}.html', ['as'=>'user.post.comment','uses'=>'Home\UserController@postComment']);
 
 Route::post('dang-bai.html', ['as'=>'user.put.post','uses'=>'Home\UserController@putPost']);
 /*post*/
-Route::get('{name}-{id}-{code}-{parent}.html', ['as'=>'post.location','uses'=>'Home\PostController@getPostLocation']);
+/*location*/
+Route::get('l-{name}-{id}-{code}-{parent}.html', ['as'=>'post.location','uses'=>'Home\PostController@getPostLocation']);
+/*category*/
+Route::get('c-{name}.html', ['as'=>'post.category','uses'=>'Home\PostController@getPostCategory']);
+
+Route::get('bai-dang-hot.html', ['as'=>'post.hot','uses'=>'Home\PostController@getPostHot']);
+
+Route::get('search-{any}.html', ['as'=>'post.search','uses'=>'Home\PostController@getSearch']);
 /*page*/
 Route::get('dieu-khoan-su-dung.html', ['as'=>'page.ruler','uses'=>'Home\PageController@getRuler']);
 

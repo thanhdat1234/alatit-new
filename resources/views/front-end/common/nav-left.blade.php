@@ -9,77 +9,29 @@
                 </div>
                 <!-- /input-group -->
             </li>
-            <li><a href="{{ url('') }}" class="waves-effect"><i class="ti-home fa-fw" data-icon="v"></i><span class="hide-menu"> Trang chủ <span class="fa arrow"></span> </span></a></li>
             <li>
-                <a href="{{ url('san-pham-do-dien-tu.html') }}" class="waves-effect">
-                    <i data-icon="7" class="fa fa-laptop fa-fw"></i> <span class="hide-menu ">Điện thoại - Máy tính<span class="fa arrow"></span></span>
+                <a href="{{ url('') }}" class="waves-effect">
+                    <i class="ti-home fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> Trang chủ <span class="fa arrow"></span> </span>
                 </a>
-                <ul class="nav nav-second-level">
-                    <li> <a href="">Inverse RTL</a></li>
-                </ul>
             </li>
-            <li>
-                <a href="inbox.html" class="waves-effect"><i data-icon=")" class="fa fa-building fa-fw"></i> <span class="hide-menu">Bất động sản <span class="fa arrow"></span></span></a>
-                <ul class="nav nav-second-level">
-                    <li> <a href="">Inverse RTL</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="inbox.html" class="waves-effect"><i class="fa fa-file-word-o fa-fw"></i> <span class="hide-menu">Văn phòng phẩm<span class="fa arrow"></span></span></a>
-                <ul class="nav nav-second-level">
-                    <li> <a href="">Inverse RTL</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="inbox.html" class="waves-effect"><i class="fa fa-trophy fa-fw"></i> <span class="hide-menu">Thể thao <span class="fa arrow"></span></span></a>
-                <ul class="nav nav-second-level">
-                    <li> <a href="">Inverse RTL</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="inbox.html" class="waves-effect"><i class="icon-basket-loaded fa-fw"></i> <span class="hide-menu">Thời trang <span class="fa arrow"></span></span></a>
-                <ul class="nav nav-second-level">
-                    <li> <a href="">Inverse RTL</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="inbox.html" class="waves-effect"><i class="fa fa-car fa-fw"></i> <span class="hide-menu">ô-tô - xe máy <span class="fa arrow"></span></span></a>
-                <ul class="nav nav-second-level">
-                    <li> <a href="">Inverse RTL</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="inbox.html" class="waves-effect"><i class="icon-book-open fa-fw"></i> <span class="hide-menu">Sách - tài liệu <span class="fa arrow"></span></span></a>
-                <ul class="nav nav-second-level">
-                    <li> <a href="">Inverse RTL</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="inbox.html" class="waves-effect"><i class="icon-cup fa-fw"></i> <span class="hide-menu">Ăn uống <span class="fa arrow"></span></span></a>
-                <ul class="nav nav-second-level">
-                    <li> <a href="">Inverse RTL</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="inbox.html" class="waves-effect"><i class="icon-paper-plane fa-fw"></i> <span class="hide-menu">Du lịch <span class="fa arrow"></span></span></a>
-                <ul class="nav nav-second-level">
-                    <li> <a href="">Inverse RTL</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="inbox.html" class="waves-effect"><i class="ti-more fa-fw"></i> <span class="hide-menu">Khác <span class="fa arrow"></span></span></a>
-                <ul class="nav nav-second-level">
-                    <li> <a href="">Inverse RTL</a></li>
-                </ul>
-            </li>
-
+            @if($cate_home)
+                @foreach($cate_home as $item)
+                    <li>
+                        <a href="{{route('post.category',['name'=>$item['alias']])}}" class="waves-effect">
+                            <i data-icon="7" class="{{$item['icon']}}"></i>
+                            <span class="hide-menu ">{{$item['name']}}<span class="fa arrow"></span></span>
+                        </a>
+                        @if($item['child'])
+                            <ul class="nav nav-second-level">
+                                @foreach($item['child'] as $ite)
+                                <li> <a href="{{route('post.category',['name'=>$ite['alias']])}}">{{$ite['name']}}</a></li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </li>
+                @endforeach
+            @endif
             <li>
                 <a href="{{url('san-pham-hot.html')}}" class="waves-effect p-hot"><i class="icon-fire fa-fw text-danger"></i> Hot</a>
             </li>

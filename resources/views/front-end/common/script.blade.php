@@ -13,9 +13,25 @@
 <script src="{!! url('public/home/') !!}/assets/js/waves.js"></script>
 @yield('script')
 <script src="{!! url('public/home/') !!}/plugins/bower_components/emojionearea/dist/emojionearea.min.js"></script>
-
+<script src="{!! url('public/home/') !!}/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
 <!--Style Switcher -->
 <script src="{!! url('public/home/') !!}/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+{{--menu--}}
+@if(!empty(Auth::user()->id))
+    @if($cate_total)
+            <script>
+                var $cate_total = {!! json_encode($cate_total,true) !!};
+                console.log($cate_total);
+            </script>
+    @endif
+    @if($location_total)
+            <script>
+                var $location_total = {!! json_encode($location_total,true) !!};
+                console.log($location_total);
+            </script>
+    @endif
+@endif
+{{--/menu--}}
 <script>
     $("#textarea").emojioneArea({
         pickerPosition    : "bottom", // top | bottom | right
@@ -25,6 +41,35 @@
     });
     $(document).find(".emojionearea-search").remove();
     $(document).ready(function(){
+        $(".change_select").unbind().bind('change',function(){
+            var $type = $(this).attr('data-type');
+            var $key = $(this).val();
+            var $data = [];
+            var $child = '';
+            var $html = '';
+            switch($type){
+                case 'category' : $data = $cate_total;$child = 'cate_child';$html = '<option value="0">--Danh mục con--</option>' ; break;
+                case 'location' : $data = $location_total;$child = 'location_child';$html = '<option value="0">--Quận (Huyện)--</option>'    ; break;
+                default : $data = [];
+            }
+            if($data == null){
+                console.log('fail');
+                return;
+            }else{
+                /*console.log($data[$key].child);*/
+                for(var $item in $data[$key].child){
+                    var $value = $data[$key].child[$item];
+                    $html += '<option value="'+$value['id']+'">'+$value['name']+'</option>';
+                    console.log($html);
+                }
+                console.log($html);
+                console.log($child);
+                $('select#'+$child).html($html);
+                /*for(){
+
+                }*/
+            }
+        });
         $('form[name="submit-post"]').unbind().bind('submit',function(){
             var $data = {};
             /*var $data ={
