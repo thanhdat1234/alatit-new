@@ -81,12 +81,13 @@
             var fd = new FormData();
             //var test = $('form[name="submit-post"]').serialize();
             fd.append('_token','{{ csrf_token() }}');
-            fd.append('file',$('form[name="file-post"]').serialize());
+            /*fd.append('file',$('form[name="file-post"]').serialize());*/
             fd.append('data',$('form[name="data-post"]').serialize());
             fd.append('submit',$('form[name="submit-post"]').serialize());
-
-            fd.append('filez',$("#test_file")[0].files[0]);
-            fd.append('filezzzz',$("#test_filez")[0].files[0]);
+            //if($("#test_filez")[0]){
+            console.log($("input[name='file']")[0]);
+                //fd.append('filez',$("input[name='file']")[0].files[0]);
+            //}
             $data = fd;
             $.ajax({
                 url: '{{ route('user.post') }}',

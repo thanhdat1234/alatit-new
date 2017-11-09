@@ -130,7 +130,7 @@
       params: {},
       clickable: true,
       ignoreHiddenFiles: true,
-      acceptedFiles: 'image/*,audio/*',
+      acceptedFiles: 'image/*,application/pdf,video/*',
       acceptedMimeTypes: null,
       autoProcessQueue: true,
       autoQueue: true,
@@ -371,6 +371,7 @@
       sending: noop,
       sendingmultiple: noop,
       success: function(file) {
+        console.log(file);
         if (file.previewElement) {
           return file.previewElement.classList.add("dz-success");
         }

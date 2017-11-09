@@ -403,41 +403,6 @@
     <script src="{!! url('public/home/') !!}/plugins/bower_components/counterup/jquery.counterup.min.js"></script>
     <!--Morris JavaScript -->
     <script src="{!! url('public/home/') !!}/plugins/bower_components/raphael/raphael-min.js"></script>
-    <!-- Treeview Plugin JavaScript -->
-    <script src="{!! url('public/home/') !!}/plugins/bower_components/bootstrap-treeview-master/dist/bootstrap-treeview.min.js"></script>
-    <script>
-        var catedata = [
-            {
-                text: 'HCM',
-                href: '#parent1',
-                tags: ['4'],
-                enableLinks:true,
-                nodes: [
-                    {
-                        text: 'Child 1',
-                        href: '#child1',
-                        tags: ['2'],
-                        enableLinks:true,
-                    },
-                    {
-                        text: 'Child 2',
-                        href: 'https://google.com',
-                        tags: ['2'],
-                        enableLinks:true,
-                    }
-                ]
-            },
-        ];
-        var $searchableTree = $('#treeview-searchable').treeview({
-            selectedBackColor: "#03a9f3",
-            onhoverColor: "rgba(0, 0, 0, 0.05)",
-            expandIcon: 'ti-plus',
-            collapseIcon: 'ti-minus',
-            nodeIcon: 'fa fa-folder',
-            data: catedata,
-        });
-    </script>
-    {{--<script src="{!! url('public/home/') !!}/plugins/bower_components/bootstrap-treeview-master/dist/bootstrap-treeview-init.1a3.delaye"></script>--}}
     <!-- Sparkline chart JavaScript -->
     <script src="{!! url('public/home/') !!}/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
     <script src="{!! url('public/home/') !!}/plugins/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
@@ -450,7 +415,42 @@
     <script src="{!! url('public/home/') !!}/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
 
     <script type="text/javascript">
+        Dropzone.autoDiscover = false;
+        $("#file_dropzone").dropzone({
+            maxFilesize: 2,
+            dictDefaultMessage: 'Drag your images here',
+            success: function(file) {
+                console.log('123');
+                if (file.previewElement) {
+                    return file.previewElement.classList.add("dz-success");
+                }
+            },
+            removedfile: function(file) {
+                $.ajax({
+                    url: '{{ route('user.post') }}',
+                    data : {},
+                    type : "POST",
+                    processData: false,
+                    contentType: false,
+                    success : function(res,status){
+                        console.log(res);
+                        console.log(status);
+                    }
+                });
+                var _ref;
+                if (file.previewElement) {
+                    if ((_ref = file.previewElement) != null) {
+                        _ref.parentNode.removeChild(file.previewElement);
+                    }
+                }
+                console.log("123");
+            },
+        });
+        Dropzone.options.file_dropzone = {
+        };
+
         $(document).ready(function() {
+
             /*file_dropzone*/
             /*$.toast({
                 heading: 'Welcome to Elite admin',
