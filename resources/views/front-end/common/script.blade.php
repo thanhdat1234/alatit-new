@@ -37,7 +37,29 @@
         pickerPosition    : "bottom", // top | bottom | right
         filtersPosition   : "bottom", // top | bottom
         tones:false,
-        search:null
+        search:null,
+        container: ".content_post"
+    });
+    $(".comment_post").emojioneArea({
+        pickerPosition    : "bottom", // top | bottom | right
+        filtersPosition   : "bottom", // top | bottom
+        tones:false,
+        search:null,
+        autocomplete:true,
+        events: {
+            // events handlers
+            // see events below
+            keypress: function (editor, event) {
+                console.log('event:keypress');
+                console.log(event.keyCode);
+                console.log(event);
+                if(event.keyCode === 13)
+                {
+                    console.log('ok');
+                    return false; // returning false will prevent the event from bubbling up.
+                }
+            },
+        }
     });
     $(document).find(".emojionearea-search").remove();
     $(document).ready(function(){
@@ -60,73 +82,27 @@
                 for(var $item in $data[$key].child){
                     var $value = $data[$key].child[$item];
                     $html += '<option value="'+$value['id']+'">'+$value['name']+'</option>';
-                    console.log($html);
                 }
-                console.log($html);
-                console.log($child);
                 $('select#'+$child).html($html);
-                /*for(){
-
-                }*/
             }
         });
         $('form[name="submit-post"]').unbind().bind('submit',function(){
             var $data = {};
-            /*var $data ={
-                'submit' : $('form[name="submit-post"]').serialize(),
-                'file' : $('form[name="file-post"]').serialize(),
-                'data' : $('form[name="data-post"]').serialize()
-            };*/
-
-            var fd = new FormData();
-            //var test = $('form[name="submit-post"]').serialize();
-            fd.append('_token','{{ csrf_token() }}');
-            /*fd.append('file',$('form[name="file-post"]').serialize());*/
-            fd.append('data',$('form[name="data-post"]').serialize());
-            fd.append('submit',$('form[name="submit-post"]').serialize());
-            //if($("#test_filez")[0]){
-            console.log($("input[name='file']")[0]);
-                //fd.append('filez',$("input[name='file']")[0].files[0]);
-            //}
-            $data = fd;
+            var $data ={
+                '_token'     : '{{csrf_token()}}',
+                'submit'    : $('form[name="submit-post"]').serialize(),
+                'data'      : $('form[name="data-post"]').serialize()
+            };
             $.ajax({
-                url: '{{ route('user.post') }}',
-                data : $data,
+                url: '{{ route('user.put.post') }}',
+                dataType :'JSON',
+                data : $('form[name="data-post"]').serialize(),
                 type : "POST",
-                processData: false,
-                contentType: false,
                 success : function(res,status){
                     console.log(res);
                     console.log(status);
                 }
             });
         });
-
-        /*$('form[name="file-post"]').unbind().bind('submit',function(){
-            var $data = {};
-            /!*var $data ={
-                'submit' : $('form[name="submit-post"]').serialize(),
-                'file' : $('form[name="file-post"]').serialize(),
-                'data' : $('form[name="data-post"]').serialize()
-            };*!/
-
-            var fd = new FormData();
-            fd.append("abc", "abc");
-            //var test = $('form[name="submit-post"]').serialize();
-            fd.append('_token','{{ csrf_token() }}');
-            fd.append('filezzzz',$("#test_filez")[0].files[0]);
-            $data = fd;
-            $.ajax({
-                url: '{{ route('user.post') }}',
-                data : $data,
-                type : "POST",
-                processData: false,
-                contentType: false,
-                success : function(res,status){
-                    console.log(res);
-                    console.log(status);
-                }
-            });
-        });*/
     });
 </script>

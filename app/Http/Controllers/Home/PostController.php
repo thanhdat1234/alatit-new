@@ -4,7 +4,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Model\Post;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Request;
 
 class PostController extends Controller {
 
@@ -28,6 +31,34 @@ class PostController extends Controller {
 	public function index()
 	{
 		//
+	}
+	public function putPost(){
+		if(Request::ajax()){
+			/*$location_parent 		= Request::get('location_parent');
+			$location_child 		= Request::get('location_child');
+			$cate_parent 			= Request::get('cate_parent');
+			$cate_child 			= Request::get('cate_child');
+			$content_post 			= Request::get('content_post');
+			$files 					= json_encode(Request::get('files'));*/
+			$id = Post::insertData(Input::all());
+			pre($id);
+			if($id){
+				die(1);
+			}else{
+				die(0);
+			}
+			//$location_parent = Request::get('data');
+			//pre($_POST);
+			/*$str_data = Request::get('data');
+			$str_file = Request::get('submit');
+			$arr_data = explode('&',$str_data);
+			$arr_file = explode('&',$str_file);
+			pre($arr_data);
+			pre($arr_file);*/
+		}else{
+			$result =['status'=>0];
+			die($result);
+		}
 	}
 
 	/**

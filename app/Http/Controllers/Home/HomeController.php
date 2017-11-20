@@ -6,6 +6,7 @@ use App\Model\Cate;
 use App\Model\Location;
 
 //use Illuminate\Http\Request;
+use App\Model\Post;
 use Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
@@ -24,8 +25,9 @@ class HomeController extends Controller {
 		$cate_home 			= Cate::getList(['home'=>1]);
 		$cate_total 		= Cate::getListFollowKey(false);
 		$location_total 	= Location::getListFollowKey(false);
-		//pre($location);
-	    return view('front-end.home.index',compact('location','cate_top','cate_home','cate_total','location_total'));
+		$post 				= Post::getListNew();
+		//pre($post);
+	    return view('front-end.home.index',compact('location','cate_top','cate_home','cate_total','location_total','post'));
 		//
 	}
 	public function testOk(){

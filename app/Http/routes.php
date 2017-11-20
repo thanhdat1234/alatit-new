@@ -14,8 +14,8 @@
 //Route::get('/', 'WelcomeController@index');
 Route::get('/', ['as'=>'page.home.index','uses'=>'Home\HomeController@index']);
 Route::post('/', ['as'=>'page.home.index','uses'=>'Home\HomeController@index']);
-Route::post('/test-ne', ['as'=>'user.post','uses'=>'Home\HomeController@testOk']);
-Route::post('/test-nezzzzz', ['as'=>'user.post.test','uses'=>'Home\HomeController@testnOk']);
+Route::post('/upload-img', ['as'=>'user.post.upload_img','uses'=>'Home\ImgController@uploadImg']);
+//Route::post('/test-nezzzzz', ['as'=>'user.post.test','uses'=>'Home\HomeController@testnOk']);
 
 Route::get('home', 'HomeController@index');
 /*home*/
@@ -42,8 +42,9 @@ Route::post('trang-ca-nhan.html', ['as'=>'user.post.profile','uses'=>'Home\UserC
 
 
 
-Route::post('dang-bai.html', ['as'=>'user.put.post','uses'=>'Home\UserController@putPost']);
 /*post*/
+Route::post('dang-bai.html', ['as'=>'user.put.post','uses'=>'Home\PostController@putPost']);
+/*Route::post('/upload-img', ['as'=>'user.post.upload_img','uses'=>'Home\ImgController@uploadImg']);*/
 /*location*/
 Route::get('l-{name}-{id}-{code}-{parent}.html', ['as'=>'post.location','uses'=>'Home\PostController@getPostLocation']);
 /*category*/

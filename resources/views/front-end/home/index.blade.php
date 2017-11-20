@@ -66,8 +66,8 @@
                     <!-- form itself -->
                     <!-- /.row -->
                     <div id="test-form" class="mfp-hide white-popup-block lys-popup">
-                        <form action="javascript:void(0)" class="horizontal" name="data-post">
-                            <input type="text" hidden name="xyz" value="{{csrf_token()}}">
+                        <form action="javascript:void(0)" class="horizontal" name="data-post" id="file_put">
+                            <input type="text" hidden name="_token" value="{{csrf_token()}}">
                             <div class="form-body">
                                 <div class="form-group">
                                     <div class="row">
@@ -98,7 +98,7 @@
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <select class="form-control change_select" data-type="category" data-child="cate-child" name="cate_parent">
+                                                    <select class="form-control change_select" data-type="category" data-child="cate_child" name="cate_parent">
                                                         <option value="0">--Tất cả thể loại--</option>
                                                         @if($cate_total)
                                                             @foreach($cate_total as $item)
@@ -108,7 +108,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <select class="form-control" name="cate-child" id="cate_child">
+                                                    <select class="form-control" name="cate_child" id="cate_child">
                                                         <option value="01">--Danh mục con--</option>
                                                     </select>
                                                 </div>
@@ -117,11 +117,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" id="textarea" placeholder="Bạn đăng gì ?"></textarea>
+                                    <textarea class="form-control" id="textarea" name="content_post" placeholder="Bạn đăng gì ?"></textarea>
                                 </div>
                             </div>
                         </form>
-                        <form action="{{ route('user.post') }}" data-ac="{{ route('user.post') }}" method="POST" data-method="POST" class="dropzone" id="file_dropzone" name="images-post" enctype="multipart/form-data">
+                        <form action="{{ route('user.post.upload_img') }}" data-ac="{{ route('user.post.upload_img') }}" method="POST" data-method="POST" class="dropzone" id="file_dropzone" name="images-post" enctype="multipart/form-data">
                             <input type="text" hidden name="_token" value="{{ csrf_token() }}">
                             <div class="fallback">
                                 <input name="file[]" type="file" id="test_filez" multiple data-dz-remove/>
@@ -166,76 +166,92 @@
         </div>
         <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
             <hr class="m-t-5">
+            @if($post)
+                @foreach($post as $item)
+                <div class="white-box">
+                    <div class="comment-center">
+                        <div class="item-post">
+                            <div class="comment-body col-sm-12">
+                                <div class="user-img">
+                                    <img src="{!! url('public/home/') !!}/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle">
+                                </div>
+                                <div class="mail-contnet">
+                                    <h5 class="lys_user_name" data-id="" data-folow="">{{$item->user_id}}
+                                        <span><i class=" icon-eye m-r-5" style="color: #fdc006;"></i><a href="javascript:void(0)" data-name="save_post" data-user="" data-post="" data-title="theo dõi người đăng bài">Theo dõi</a></span>
+                                    </h5>
+                                    <ul class="list-inline text-right m-t-10">
+                                        <li>
+                                            <h5 data-location="" data-post><i class="ti-location-pin text-blue m-r-5"></i> <a href="{{ url('san-pham-dia-diem.html') }}">TP.HCM</a></h5>
+                                        </li>
+                                        <li>
+                                            <h5><i class="icon-badge m-r-5" style="color: #fdc006;"></i><a href="javascript:void(0)" data-name="save_post" data-user="" data-post="">Lưu</a></h5>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="comment-body col-sm-12">
+                                <font class="mail-desc">
+                                    {!! trim($item->content)!!}
+                                </font>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-wrapper p-b-10 collapse in">
+                                            <?php $imgz = json_decode($item->intro); print_r($imgz)?>
+                                            @if($imgz)
+                                                @if(count($imgz) == 1 || count($imgz) == 2)
 
-            @for($i=0;$i<10;$i++)
-            <div class="white-box">
-                <div class="comment-center">
-                    <div class="item-post">
-                        <div class="comment-body col-sm-12">
-                            <div class="user-img">
-                                <img src="{!! url('public/home/') !!}/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle">
-                            </div>
-                            <div class="mail-contnet">
-                                <h5 class="lys_user_name" data-id="" data-folow="">Pavan kumar
-                                    <span><i class=" icon-eye m-r-5" style="color: #fdc006;"></i><a href="javascript:void(0)" data-name="save_post" data-user="" data-post="" data-title="theo dõi người đăng bài">Theo dõi</a></span>
-                                </h5>
-                                <ul class="list-inline text-right m-t-10">
-                                    <li>
-                                        <h5 data-location="" data-post><i class="ti-location-pin text-blue m-r-5"></i> <a href="{{ url('san-pham-dia-diem.html') }}">TP.HCM</a></h5>
-                                    </li>
-                                    <li>
-                                        <h5><i class="icon-badge m-r-5" style="color: #fdc006;"></i><a href="javascript:void(0)" data-name="save_post" data-user="" data-post="">Lưu</a></h5>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <p class="mail-desc">
-                                Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat.
-                            </p>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-wrapper p-b-10 collapse in">
-                                        <div class="owl-carousel owl-theme lys-owl-item">
-                                            <div class="item"><img class="owl-lazy" data-src="{!! url('public/home/') !!}/plugins/images/big/img1.jpg" alt="Owl Image"></div>
-                                            <div class="item"><img class="owl-lazy" data-src="{!! url('public/home/') !!}/plugins/images/big/img2.jpg" alt="Owl Image"></div>
-                                            <div class="item"><img class="owl-lazy" data-src="{!! url('public/home/') !!}/plugins/images/big/img3.jpg" alt="Owl Image"></div>
-                                            <div class="item"><img class="owl-lazy" data-src="{!! url('public/home/') !!}/plugins/images/big/img4.jpg" alt="Owl Image"></div>
-                                            <div class="item"><img class="owl-lazy" data-src="{!! url('public/home/') !!}/plugins/images/big/img5.jpg" alt="Owl Image"></div>
-                                            <div class="item"><img class="owl-lazy" data-src="{!! url('public/home/') !!}/plugins/images/big/img6.jpg" alt="Owl Image"></div>
-                                            <div class="item-video">
-                                                <iframe src="https://www.youtube.com/embed/6TUOSBPCygs?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-                                            </div>
+                                                @else
+                                                <div class="owl-carousel owl-theme lys-owl-item">
+                                                    <div class="item"><img class="owl-lazy" data-src="{!! url('public/home/') !!}/plugins/images/big/img1.jpg" alt="Owl Image"></div>
+                                                </div>
+                                                @endif
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="mail-content col-sm-12">
-                            <span data-like="" data-name="like">
-                                    <button type="button" class="fcbtn btn-success btn-circle btn-outline btn-1d"><i class="fa fa-thumbs-o-up"></i></button> 100
-                                </span>
-                                <span data-dislike="" data-name="dislike">
-                                    <button type="button" class="fcbtn btn-warning btn-circle btn-outline btn-1d"><i class="fa fa-thumbs-o-down"></i></button> 100
-                                </span>
-                                <span data-comment="" data-name="comment">
-                                    <button type="button" class="fcbtn btn-info btn-circle btn-outline btn-1d"><i class="icon-bubble"></i></button> comment
-                                </span>
-                            <span class="time pull-right time" data-time="">April 14, 2017</span>
-                            <ul class="list-inline text-right m-t-5">
-                                <button class="btn btn-facebook waves-effect btn-circle waves-light" type="button"> <i class="fa fa-facebook"></i> </button>
-                                <button class="btn btn-twitter waves-effect btn-circle waves-light" type="button"> <i class="fa fa-twitter"></i> </button>
-                                <button class="btn btn-googleplus waves-effect btn-circle waves-light" type="button"> <i class="fa fa-google-plus"></i> </button>
-                            </ul>
-                        </div>
+                            <div class="mail-content col-sm-12">
+                                <span data-like="" data-name="like">
+                                        <button type="button" class="fcbtn btn-success btn-circle btn-outline btn-1d"><i class="fa fa-thumbs-o-up"></i></button> 100
+                                    </span>
+                                    <span data-dislike="" data-name="dislike">
+                                        <button type="button" class="fcbtn btn-warning btn-circle btn-outline btn-1d"><i class="fa fa-thumbs-o-down"></i></button> 100
+                                    </span>
+                                    <span data-comment="" data-name="comment">
+                                        <button type="button" class="fcbtn btn-info btn-circle btn-outline btn-1d"><i class="icon-bubble"></i></button> comment
+                                    </span>
+                                <span class="time pull-right time" data-time="">April 14, 2017</span>
+                                <ul class="list-inline text-right m-t-5">
+                                    <button class="btn btn-facebook waves-effect btn-circle waves-light" type="button"> <i class="fa fa-facebook"></i> </button>
+                                    <button class="btn btn-twitter waves-effect btn-circle waves-light" type="button"> <i class="fa fa-twitter"></i> </button>
+                                    <button class="btn btn-googleplus waves-effect btn-circle waves-light" type="button"> <i class="fa fa-google-plus"></i> </button>
+                                </ul>
+                            </div>
 
+                        </div>
+                    </div>
+                    <div class="comment-center">
+                        <div class="comment-body">
+                            <div class="user-img"> <img src="../plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"></div>
+                            <div class="mail-contnet">
+                                <h5>Pavan kumar</h5>
+                                <span class="mail-desc">
+                                    Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat.
+                                </span>
+                                <a href="javacript:void(0)" class="action"><i class="ti-check text-success"></i></a>
+                                <span class="time pull-right">April 14, 2017</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <textarea name="comment_post" class="form-control comment_post" id="textarea" cols="30" rows="10"></textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
-            @endfor
+                @endforeach
+            @endif
         </div>
         <div class="col-md-3 col-lg-3 col-sm-16 col-xs-12">
             <div class="row">
@@ -417,17 +433,20 @@
     <script type="text/javascript">
         Dropzone.autoDiscover = false;
         $("#file_dropzone").dropzone({
-            maxFilesize: 2,
+            maxFilesize: 5,
             dictDefaultMessage: 'Drag your images here',
-            success: function(file) {
-                console.log('123');
+            success: function(file,respons) {
+                console.log(file);
+                console.log(respons);
+                var res = JSON.parse(respons);
                 if (file.previewElement) {
+                    $("#file_put").append('<input type="text" hidden name="files[]" value="'+res.name+'">');
                     return file.previewElement.classList.add("dz-success");
                 }
             },
             removedfile: function(file) {
                 $.ajax({
-                    url: '{{ route('user.post') }}',
+                    url: '{{ route('user.post.upload_img') }}',
                     data : {},
                     type : "POST",
                     processData: false,
@@ -448,20 +467,5 @@
         });
         Dropzone.options.file_dropzone = {
         };
-
-        $(document).ready(function() {
-
-            /*file_dropzone*/
-            /*$.toast({
-                heading: 'Welcome to Elite admin',
-                text: 'Use the predefined ones, or specify a custom position object.',
-                position: 'top-right',
-                loaderBg: '#ff6849',
-                icon: 'info',
-                hideAfter: 3500,
-
-                stack: 6
-            })*/
-        });
     </script>
 @endsection
