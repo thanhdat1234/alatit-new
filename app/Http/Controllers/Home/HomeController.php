@@ -26,7 +26,9 @@ class HomeController extends Controller {
 		$cate_total 		= Cate::getListFollowKey(false);
 		$location_total 	= Location::getListFollowKey(false);
 		$post 				= Post::getListNew();
-		//pre($post);
+
+		/*pre($post);
+		die;*/
 	    return view('front-end.home.index',compact('location','cate_top','cate_home','cate_total','location_total','post'));
 		//
 	}

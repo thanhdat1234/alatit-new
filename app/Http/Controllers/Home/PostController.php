@@ -3,6 +3,8 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Model\Cate;
+use App\Model\Location;
 use App\Model\Post;
 //use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,18 +18,41 @@ class PostController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getPostLocation(){
-		$post = Post::getList(false);
-	    return view('front-end.post.listLocation');
+	public function getPostLocation($name,$code,$id,$parent_id){
+		$location 			= Location::orderCategory();
+		$cate_top 			= Cate::getList(['top'=>1]);
+		$cate_home 			= Cate::getList(['home'=>1]);
+		$cate_total 		= Cate::getListFollowKey(false);
+		$location_total 	= Location::getListFollowKey(false);
+		$post 				= Post::getListNew();
+	    return view('front-end.post.listLocation',compact('location','cate_top','cate_home','cate_total','location_total','post'));
     }
-	public function getPostCategory(){
-		$post = Post::getList(false);
-	    return view('front-end.post.listLocation');
+	public function getPostCategory($slug){
+		//$id_cate
+		//$post = Post::getList(false);
+		$location 			= Location::orderCategory();
+		$cate_top 			= Cate::getList(['top'=>1]);
+		$cate_home 			= Cate::getList(['home'=>1]);
+		$cate_total 		= Cate::getListFollowKey(false);
+		$location_total 	= Location::getListFollowKey(false);
+		$post 				= Post::getListNew();
+		//die('123');
+	    return view('front-end.post.listCate',compact('location','cate_top','cate_home','cate_total','location_total','post'));
     }
 	public function getPostHot(){
 		$post = Post::getList(false);
 	    return view('front-end.post.listLocation');
     }
+	public function getSinglePost(){
+		$location 			= Location::orderCategory();
+		$cate_top 			= Cate::getList(['top'=>1]);
+		$cate_home 			= Cate::getList(['home'=>1]);
+		$cate_total 		= Cate::getListFollowKey(false);
+		$location_total 	= Location::getListFollowKey(false);
+		$post 				= Post::getListNew();
+		//die('123');
+		return view('front-end.post.single',compact('location','cate_top','cate_home','cate_total','location_total','post'));
+	}
 	public function index()
 	{
 		//

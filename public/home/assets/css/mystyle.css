@@ -1,0 +1,19 @@
+.lys-popup .mfp-close{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    z-index: 50 !important;
+    color: #ac2925 !important;
+}
+.white-popup-block{
+    /*margin-top: 300px;*/
+}
+.emojionearea-search{
+    display: none;
+}
+.fb-comment{
+    display: none;
+}
+.my-btn{
+    cursor: pointer;
+}

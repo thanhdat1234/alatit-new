@@ -12,97 +12,71 @@
 <!--Wave Effects -->
 <script src="{!! url('public/home/') !!}/assets/js/waves.js"></script>
 @yield('script')
-<script src="{!! url('public/home/') !!}/plugins/bower_components/emojionearea/dist/emojionearea.min.js"></script>
+<script type="text/javascript" src="{!! url('public/home/') !!}/plugins/bower_components/fancybox/ekko-lightbox.min.js"></script>
+
+        <!--Counter js -->
+<script src="{!! url('public/home/') !!}/plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
+<script src="{!! url('public/home/') !!}/plugins/bower_components/counterup/jquery.counterup.min.js"></script>
+<!--Morris JavaScript -->
+<script src="{!! url('public/home/') !!}/plugins/bower_components/raphael/raphael-min.js"></script>
+<!-- Sparkline chart JavaScript -->
+<script src="{!! url('public/home/') !!}/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+<script src="{!! url('public/home/') !!}/plugins/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
+<script src="{!! url('public/home/') !!}/plugins/bower_components/dropzone-master/dist/dropzone.js"></script>
+
+<script src="{!! url('public/home/') !!}/plugins/bower_components/owl.carousel/owl.carousel.min.js"></script>
+<script src="{!! url('public/home/') !!}/plugins/bower_components/owl.carousel/owl.custom.js"></script>
+<!-- Magnific popup JavaScript -->
+<script src="{!! url('public/home/') !!}/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+<script src="{!! url('public/home/') !!}/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+
 <script src="{!! url('public/home/') !!}/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
 <!--Style Switcher -->
 <script src="{!! url('public/home/') !!}/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+<!--Wave Effects -->
+<script src="{!! url('public/home/') !!}/plugins/bower_components/emojionearea/dist/emojionearea.min.js"></script>
+<script src="{!! url('public/home/') !!}/assets/js/myscript.js"></script>
 {{--menu--}}
 @if(!empty(Auth::user()->id))
     @if($cate_total)
             <script>
                 var $cate_total = {!! json_encode($cate_total,true) !!};
-                console.log($cate_total);
+                //console.log($cate_total);
             </script>
     @endif
     @if($location_total)
             <script>
                 var $location_total = {!! json_encode($location_total,true) !!};
-                console.log($location_total);
+                //console.log($location_total);
             </script>
     @endif
 @endif
 {{--/menu--}}
 <script>
-    $("#textarea").emojioneArea({
-        pickerPosition    : "bottom", // top | bottom | right
-        filtersPosition   : "bottom", // top | bottom
-        tones:false,
-        search:null,
-        container: ".content_post"
-    });
-    $(".comment_post").emojioneArea({
-        pickerPosition    : "bottom", // top | bottom | right
-        filtersPosition   : "bottom", // top | bottom
-        tones:false,
-        search:null,
-        autocomplete:true,
-        events: {
-            // events handlers
-            // see events below
-            keypress: function (editor, event) {
-                console.log('event:keypress');
-                console.log(event.keyCode);
-                console.log(event);
-                if(event.keyCode === 13)
-                {
-                    console.log('ok');
-                    return false; // returning false will prevent the event from bubbling up.
-                }
-            },
-        }
-    });
-    $(document).find(".emojionearea-search").remove();
     $(document).ready(function(){
-        $(".change_select").unbind().bind('change',function(){
-            var $type = $(this).attr('data-type');
-            var $key = $(this).val();
-            var $data = [];
-            var $child = '';
-            var $html = '';
-            switch($type){
-                case 'category' : $data = $cate_total;$child = 'cate_child';$html = '<option value="0">--Danh mục con--</option>' ; break;
-                case 'location' : $data = $location_total;$child = 'location_child';$html = '<option value="0">--Quận (Huyện)--</option>'    ; break;
-                default : $data = [];
-            }
-            if($data == null){
-                console.log('fail');
-                return;
-            }else{
-                /*console.log($data[$key].child);*/
-                for(var $item in $data[$key].child){
-                    var $value = $data[$key].child[$item];
-                    $html += '<option value="'+$value['id']+'">'+$value['name']+'</option>';
-                }
-                $('select#'+$child).html($html);
-            }
-        });
-        $('form[name="submit-post"]').unbind().bind('submit',function(){
-            var $data = {};
-            var $data ={
-                '_token'     : '{{csrf_token()}}',
-                'submit'    : $('form[name="submit-post"]').serialize(),
-                'data'      : $('form[name="data-post"]').serialize()
-            };
-            $.ajax({
-                url: '{{ route('user.put.post') }}',
-                dataType :'JSON',
-                data : $('form[name="data-post"]').serialize(),
-                type : "POST",
-                success : function(res,status){
-                    console.log(res);
-                    console.log(status);
-                }
-            });
-        });
+        url     = '{{ route('user.put.post') }}';
+        token   = '{{csrf_token()}}';
+        createPost(url,token);
+        urldrop = '{{ route('user.post.upload_img') }}';
+        dropFile(urldrop,token);
     });
+</script>
+
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1653227008032363',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v2.11'
+        });
+        FB.AppEvents.logPageView();
+    };
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>

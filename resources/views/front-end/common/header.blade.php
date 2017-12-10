@@ -61,7 +61,7 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
-                    <img src="{!! url('public/home/') !!}/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle">
+                    <img src="{{asset('public/upload/users/')}}/{{Auth::user()->avatar}}" alt="user-img" width="36" class="thumb-sm img-circle">
                     <b class="hidden-xs">{!! Auth::user()->name !!}</b>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated flipInY">

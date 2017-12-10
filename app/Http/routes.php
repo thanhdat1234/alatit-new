@@ -39,6 +39,7 @@ Route::get('quen-mat-khau.html', ['as'=>'user.page.recoverpd','uses'=>'Home\User
 
 Route::get('trang-ca-nhan.html', ['as'=>'user.get.profile','uses'=>'Home\UserController@getProfile']);
 Route::post('trang-ca-nhan.html', ['as'=>'user.post.profile','uses'=>'Home\UserController@postProfile']);
+Route::post('cap-nhat-thong-tin.html', ['as'=>'user.updateInfo','uses'=>'Home\UserController@updateInfo']);
 
 
 
@@ -46,8 +47,10 @@ Route::post('trang-ca-nhan.html', ['as'=>'user.post.profile','uses'=>'Home\UserC
 Route::post('dang-bai.html', ['as'=>'user.put.post','uses'=>'Home\PostController@putPost']);
 /*Route::post('/upload-img', ['as'=>'user.post.upload_img','uses'=>'Home\ImgController@uploadImg']);*/
 /*location*/
-Route::get('l-{name}-{id}-{code}-{parent}.html', ['as'=>'post.location','uses'=>'Home\PostController@getPostLocation']);
+Route::get('l-{name}-{id}{code}{parent}.html', ['as'=>'post.location','uses'=>'Home\PostController@getPostLocation']);
 /*category*/
+Route::get('d-{id}.html', ['as'=>'post.single','uses'=>'Home\PostController@getSinglePost']);
+/*detail*/
 Route::get('c-{name}.html', ['as'=>'post.category','uses'=>'Home\PostController@getPostCategory']);
 
 Route::get('bai-dang-hot.html', ['as'=>'post.hot','uses'=>'Home\PostController@getPostHot']);

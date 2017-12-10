@@ -6,13 +6,17 @@
 <!-- toast CSS -->
 <link href="{!! url('public/home/') !!}/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
 @yield('style')
+<link rel="stylesheet" type="text/css" href="{!! url('public/home/') !!}/plugins/bower_components/fancybox/ekko-lightbox.min.css" />
 <!-- animation CSS -->
 <link href="{!! url('public/home/') !!}/assets/css/animate.css" rel="stylesheet">
 <link href="{!! url('public/home/') !!}/plugins/bower_components/emojionearea/dist/emojionearea.min.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="{!! url('public/home/') !!}/assets/css/style.css" rel="stylesheet">
+
 <!-- color CSS -->
+
 <link href="{!! url('public/home/') !!}/assets/css/colors/megna.css" id="theme" rel="stylesheet">
+<link href="{!! url('public/home/') !!}/assets/css/mystyle.css" rel="stylesheet">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
