@@ -75,5 +75,15 @@ class Location extends Model
         }
         return $dataz;
     }
+    static public function getSingleFollowCode(string $code){
+        if(!$code){
+            return null;
+        }
+        $where = [
+            'id'=>$code
+        ];
+        $dataz = Location::where($where)->first();
+        return $dataz;
+    }
 
 }

@@ -19,24 +19,37 @@ class PostController extends Controller {
 	 * @return Response
 	 */
 	public function getPostLocation($name,$code,$id,$parent_id){
+		echo $id;
 		$location 			= Location::orderCategory();
 		$cate_top 			= Cate::getList(['top'=>1]);
 		$cate_home 			= Cate::getList(['home'=>1]);
 		$cate_total 		= Cate::getListFollowKey(false);
 		$location_total 	= Location::getListFollowKey(false);
-		$post 				= Post::getListNew();
+		$post 				= Post::getListFCodeLocation($code);
+	    return view('front-end.post.listLocation',compact('location','cate_top','cate_home','cate_total','location_total','post'));
+	}
+	public function getPostLocations($id,$name){
+		echo $id;
+		//echo $name;
+		//die;
+		$location 			= Location::orderCategory();
+		$cate_top 			= Cate::getList(['top'=>1]);
+		$cate_home 			= Cate::getList(['home'=>1]);
+		$cate_total 		= Cate::getListFollowKey(false);
+		$location_total 	= Location::getListFollowKey(false);
+		$post 				= Post::getListFCodeLocation($id);
 	    return view('front-end.post.listLocation',compact('location','cate_top','cate_home','cate_total','location_total','post'));
     }
 	public function getPostCategory($slug){
 		//$id_cate
 		//$post = Post::getList(false);
+		//echo $slug;
 		$location 			= Location::orderCategory();
 		$cate_top 			= Cate::getList(['top'=>1]);
 		$cate_home 			= Cate::getList(['home'=>1]);
 		$cate_total 		= Cate::getListFollowKey(false);
 		$location_total 	= Location::getListFollowKey(false);
-		$post 				= Post::getListNew();
-		//die('123');
+		$post 				= Post::getListFSlug($slug);
 	    return view('front-end.post.listCate',compact('location','cate_top','cate_home','cate_total','location_total','post'));
     }
 	public function getPostHot(){
@@ -66,7 +79,7 @@ class PostController extends Controller {
 			$content_post 			= Request::get('content_post');
 			$files 					= json_encode(Request::get('files'));*/
 			$id = Post::insertData(Input::all());
-			pre($id);
+			//pre($id);
 			if($id){
 				die(1);
 			}else{

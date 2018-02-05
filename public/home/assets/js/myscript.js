@@ -20,6 +20,9 @@ function createPost(url,token){
             success : function(res,status){
             console.log(res);
             console.log(status);
+            if(res.status === 1){
+                location.reload();
+            }
         }
         });
     });

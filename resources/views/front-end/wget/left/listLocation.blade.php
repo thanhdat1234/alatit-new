@@ -8,7 +8,8 @@
                 @foreach($location as $item)
                     <li class="list-group-item">
                         <i class="ti-plus text-success"></i>
-                        <a href="{{route('post.location',[replace($item['name']),$item['id'],$item['code'],$item['parent_id']])}}"> {{$item['name']}}</a>
+                        <!-- <a href="{{route('post.location',[replace($item['name']),$item['id'],$item['code'],$item['parent_id']])}}"> {{$item['name']}}</a> -->
+                        <a href="{{route('post.location',[$item['id'],replace($item['name'])])}}"> {{$item['name']}}</a>
                     </li>
                 @endforeach
                 {{--/item--}}

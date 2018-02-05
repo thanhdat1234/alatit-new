@@ -1,5 +1,7 @@
 @if($post)
-
+    <div class='col-xs-12 pull-right'>
+        <?php echo $post->render(); ?>
+    </div>
     @foreach($post as $item)
         <div class="white-box">
             <div class="comment-center">
@@ -131,4 +133,11 @@
             </div>
         </div>
     @endforeach
+    <div class='col-xs-12 pull-right'>
+        <?php echo $post->render(); ?>
+    </div>
+@else
+    <div class="col-sm-12 col-xs-12">
+        <p class="text-danger">Chưa có bài cho danh mục này !</p>
+    </div>
 @endif

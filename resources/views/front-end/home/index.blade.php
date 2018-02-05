@@ -18,8 +18,9 @@
     <div class="row">
         @include('front-end.wget.slidebar_left')
         <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-            <hr class="m-t-5">
+            <!-- <hr class="m-t-5"> -->
             @include('front-end.post.item',$post)
+            
         </div>
         @include('front-end.wget.slidebar_right')
     </div>

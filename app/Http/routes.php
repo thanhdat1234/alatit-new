@@ -47,7 +47,8 @@ Route::post('cap-nhat-thong-tin.html', ['as'=>'user.updateInfo','uses'=>'Home\Us
 Route::post('dang-bai.html', ['as'=>'user.put.post','uses'=>'Home\PostController@putPost']);
 /*Route::post('/upload-img', ['as'=>'user.post.upload_img','uses'=>'Home\ImgController@uploadImg']);*/
 /*location*/
-Route::get('l-{name}-{id}{code}{parent}.html', ['as'=>'post.location','uses'=>'Home\PostController@getPostLocation']);
+Route::get('l-{name}-{id}{code}{parent}.html', ['as'=>'post.location','uses'=>'Home\PostController@getPostLocation'])->where(['name'=>'[a-zA-Z-]+','id'=>'[0-9]+']);
+Route::get('l-{id}{name}.html', ['as'=>'post.location','uses'=>'Home\PostController@getPostLocations'])->where(['name'=>'[a-zA-Z-]+','id'=>'[0-9]+']);
 /*category*/
 Route::get('d-{id}.html', ['as'=>'post.single','uses'=>'Home\PostController@getSinglePost']);
 /*detail*/

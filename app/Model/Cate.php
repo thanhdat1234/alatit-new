@@ -86,4 +86,15 @@ class Cate extends Model {
         }
         return $dataz;
     }
+
+    static public function getSingleFollowSlug(string $slug){
+        if(!$slug){
+            return null;
+        }
+        $where = [
+            'alias'=>(string)$slug
+        ];
+        $dataz = Cate::where($where)->first();
+        return $dataz;
+    }
 }
